@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TestService } from 'src/app/shared/services/test.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +6,12 @@ import { TestService } from 'src/app/shared/services/test.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(public _testService: TestService) {}
+  public count: number = 0;
+  constructor() {}
 
   ngOnInit(): void {}
+
+  public counter(): void {
+    this.count++;
+  }
 }

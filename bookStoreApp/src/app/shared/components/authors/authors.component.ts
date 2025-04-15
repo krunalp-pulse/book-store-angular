@@ -1,21 +1,19 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { TestService } from '../../services/test.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
   styleUrls: ['./authors.component.scss']
 })
-export class AuthorsComponent implements OnInit {
+export class AuthorsComponent implements OnInit, OnChanges {
   
-  public data: number;
+  @Input() data: number;
+  constructor() { }
 
-  constructor(private _testService: TestService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
-  }
-  public btnClick(): void{
-    // this.myData.emit('This text is from child component');
-    this._testService.myData = "This text is from child component";
   }
 }
