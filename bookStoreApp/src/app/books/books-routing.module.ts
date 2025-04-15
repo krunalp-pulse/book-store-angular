@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublicComponent } from './public.component';
 import { AllBooksComponent } from './components/all-books/all-books.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { RecentBooksComponent } from './components/recent-books/recent-books.component';
 
 const routes: Routes = [
-  {
-    path: 'public', component: PublicComponent,
-    children: [
-      { path: '', redirectTo: 'all-books', pathMatch: 'full' },
-      { path: 'all-books', component: AllBooksComponent },
-      { path: 'book-details/:Id/author/:authorId', component: BookDetailsComponent }
-    ]
-  },
+  { path: '', component: AllBooksComponent },
+  { path: 'recent', component: RecentBooksComponent },
+  { path: 'book-details/:Id/author/:authorId', component: BookDetailsComponent }
 ]
 
 @NgModule({
@@ -22,4 +17,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class PublicRoutingModule { }
+export class BooksRoutingModule { }

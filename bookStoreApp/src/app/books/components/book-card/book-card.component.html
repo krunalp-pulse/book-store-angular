@@ -1,0 +1,15 @@
+<p>book-card works!</p>
+<div class="container">
+    <mat-card class="book-card" *ngFor="let book of books">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{book.title}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>{{book.author}}</p>
+        <p>Total pages: {{book.totalPages}}</p>
+        <p>Price: {{book.price.value + " " + book.price.currency}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
