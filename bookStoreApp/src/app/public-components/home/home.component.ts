@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TestService } from 'src/app/shared/services/test.service';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor(public _testService: TestService) {}
 
-  ngOnInit(): void { }
-
-  public childData($event: any): void{
-    console.log($event);
-  }
+  ngOnInit(): void {}
 }
