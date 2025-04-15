@@ -8,9 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class AuthorsComponent implements OnInit {
   public data: number;
 
-  public setData(value: number): void {
-    this.data = value;
-  }
   constructor() { }
 
   ngOnInit(): void {
