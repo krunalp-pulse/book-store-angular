@@ -3,7 +3,7 @@
   <a routerLink="/about-us">About us</a>
   <a routerLink="/how-it-works">How it Works</a>
   <a routerLink="/auth/login" [queryParams]="{name: 'Krunal', email: email}">Login</a>
-  <a routerLink="/public/all-books">All books</a>
+  <a routerLink="/books">All books</a>
   <a [routerLink]="['/public/book-details/', 1, 'author', 3]">Details from APP</a>
 </div>
 <router-outlet></router-outlet>
