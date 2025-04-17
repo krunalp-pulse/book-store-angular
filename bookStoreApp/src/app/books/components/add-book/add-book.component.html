@@ -1,10 +1,28 @@
 <h2>Add New Book</h2>
-<form #myForm="ngForm" (ngSubmit)="saveBook(myForm.value)">
-    <input type="text" name="title" placeholder="title" ngModel><br><br>
-    <input type="text" name="author" placeholder="author" ngModel><br><br>
-    <input type="number" name="pages" placeholder="pages" ngModel><br><br>
-    <input type="number" name="price" placeholder="price" ngModel><br><br>
-    <button type="submit">Save</button>
+<form #myForm="ngForm" (ngSubmit)="saveBook(myForm.value)" class="add-book-from">
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" placeholder="Title" ngModel />
+        <mat-icon matSuffix>title</mat-icon> </mat-form-field><br />
+    <mat-form-field appearance="fill">
+        <mat-label>Author</mat-label>
+        <input matInput name="author" placeholder="Author" ngModel />
+        <mat-icon matSuffix>person</mat-icon> </mat-form-field><br />
+    <mat-form-field appearance="fill">
+        <mat-label>No of Pages</mat-label>
+        <input matInput name="pages" placeholder="Pages" ngModel />
+        <mat-icon matSuffix>123</mat-icon> </mat-form-field><br />
+    <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <mat-select name="price" placeholder="Price" ngModel>
+            <mat-option value="100">$ 100</mat-option>
+            <mat-option value="200">$ 200</mat-option>
+            <mat-option value="300">$ 300</mat-option>
+        </mat-select>
+        <mat-icon matSuffix>attach_money</mat-icon> 
+    </mat-form-field><br />
+    <p><mat-slide-toggle color="primary" name="isPublished" ngModel>Slide me!</mat-slide-toggle></p><br />
+    <button type="submit" mat-raised-button color="primary">Save</button>
 </form>
 
-<h2>{{myForm.value | json}}</h2>
+<h2>{{ myForm.value | json }}</h2>
