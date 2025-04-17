@@ -17,13 +17,20 @@
             <td>status</td>
             <td>{{ bookTitle.status }}</td>
         </tr>
+        <tr>
+            <td>errors</td>
+            <td>{{ bookTitle.errors | json }}</td>
+        </tr>
     </table>
     <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
-        <input matInput name="title" placeholder="Title" [(ngModel)]="model.title" maxlength="10" #bookTitle="ngModel"
+        <input matInput name="title" placeholder="Title" [(ngModel)]="model.title" minlength="10" #bookTitle="ngModel"
             required />
         <mat-icon matSuffix>title</mat-icon>
-        <mat-hint *ngIf="bookTitle.invalid && bookTitle.touched">Please enter the book title</mat-hint>
+        <mat-hint *ngIf="bookTitle.invalid && bookTitle.touched">
+            <span *ngIf="bookTitle.errors?.required">Please enter the book title</span>
+            <span *ngIf="bookTitle.errors?.minlength">Min length is 10</span>
+        </mat-hint>
     </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Author</mat-label>
