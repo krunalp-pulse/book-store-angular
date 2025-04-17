@@ -14,23 +14,27 @@ import { BookModel } from '../../Models/book.model';
   styleUrls: ['./add-book.component.scss'],
 })
 export class AddBookComponent implements OnInit {
-
-  constructor(private _bookService: BookService) { }
+  prices: any[] = [
+    { value: 100, viewValue: '$ 100' },
+    { value: 200, viewValue: '$ 200' },
+    { value: 300, viewValue: '$ 300' },
+  ];
+  public model: BookModel;
+  constructor(private _bookService: BookService) {}
 
   ngOnInit(): void {
-
-  }
-  saveBook(value: any): void {
-    console.log(value);
-    const book: BookModel = new BookModel();
-    book.title = value.title;
-    book.author = value.author;
-    book.totalPages = value.pages;
-    book.price = {
-      currency: "$",
-      value: value.price
+    this.model = new BookModel();
+    this.model.title = 'Book';
+    this.model.totalPages = 100;
+    this.model.price = {
+      value: 100,
+      currency: 'USD',
     };
-    book.isPublished = value.isPublished;
-    this._bookService.addBook(book);
+    this.model.isPublished = true;
+  }
+
+  saveBook(): void {
+    console.log(this.model);
+    this._bookService.addBook(this.model);
   }
 }

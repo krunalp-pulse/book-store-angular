@@ -1,27 +1,35 @@
 <h2>Add New Book</h2>
-<form #myForm="ngForm" (ngSubmit)="saveBook(myForm.value)" class="add-book-from">
+<form #myForm="ngForm" (ngSubmit)="saveBook()" class="add-book-from">
     <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
-        <input matInput name="title" placeholder="Title" ngModel />
+        <input matInput name="title" placeholder="Title" [(ngModel)]="model.title" />
         <mat-icon matSuffix>title</mat-icon> </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Author</mat-label>
-        <input matInput name="author" placeholder="Author" ngModel />
+        <input matInput name="author" placeholder="Author" [(ngModel)]="model.author" />
         <mat-icon matSuffix>person</mat-icon> </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>No of Pages</mat-label>
-        <input matInput name="pages" placeholder="Pages" ngModel />
+        <input matInput name="pages" placeholder="Pages" [(ngModel)]="model.totalPages" />
         <mat-icon matSuffix>123</mat-icon> </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Price</mat-label>
-        <mat-select name="price" placeholder="Price" ngModel>
-            <mat-option value="100">$ 100</mat-option>
-            <mat-option value="200">$ 200</mat-option>
-            <mat-option value="300">$ 300</mat-option>
+        <mat-select name="price" placeholder="Price" [(ngModel)]="model.price.value">
+            <mat-option *ngFor="let price of prices" [value]="price.value">
+                {{ price.viewValue }}
+            </mat-option>
         </mat-select>
-        <mat-icon matSuffix>attach_money</mat-icon> 
-    </mat-form-field><br />
-    <p><mat-slide-toggle color="primary" name="isPublished" ngModel>Slide me!</mat-slide-toggle></p><br />
+        <mat-icon matSuffix>attach_money</mat-icon> </mat-form-field><br />
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" name="publishedOn" [(ngModel)]="model.publishedOn" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> </mat-form-field><br />
+    <p>
+        <mat-slide-toggle color="primary" name="isPublished" [(ngModel)]="model.isPublished">Slide
+            me!</mat-slide-toggle>
+    </p>
+    <br />
     <button type="submit" mat-raised-button color="primary">Save</button>
 </form>
 
