@@ -1,17 +1,25 @@
 <h2>Add New Book</h2>
 <form #myForm="ngForm" (ngSubmit)="saveBook()" class="add-book-from">
+    form is valid: {{myForm.valid}}<br />
+    form is invalid: {{myForm.invalid}}<br />
     <mat-form-field appearance="fill">
         <mat-label>Title</mat-label>
-        <input matInput name="title" placeholder="Title" [(ngModel)]="model.title" />
-        <mat-icon matSuffix>title</mat-icon> </mat-form-field><br />
+        <input matInput name="title" placeholder="Title" [(ngModel)]="model.title" maxlength="10" #bookTitle="ngModel" required/>
+        <mat-icon matSuffix>title</mat-icon> 
+        <mat-hint [hidden]="bookTitle.valid">Please enter the book title</mat-hint>
+    </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Author</mat-label>
-        <input matInput name="author" placeholder="Author" [(ngModel)]="model.author" />
-        <mat-icon matSuffix>person</mat-icon> </mat-form-field><br />
+        <input matInput name="author" placeholder="Author" [(ngModel)]="model.author" #author="ngModel" required/>
+        <mat-icon matSuffix>person</mat-icon> 
+        <mat-hint [hidden]="author.valid">Please enter the author</mat-hint>
+    </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>No of Pages</mat-label>
-        <input matInput name="pages" placeholder="Pages" [(ngModel)]="model.totalPages" />
-        <mat-icon matSuffix>123</mat-icon> </mat-form-field><br />
+        <input matInput name="pages" type="number" placeholder="Pages" [(ngModel)]="model.totalPages" max="1000" min="10" #nop="ngModel"/>
+        <mat-icon matSuffix>123</mat-icon> 
+        <mat-hint [hidden]="nop.valid">Valid length is 10 to 1000</mat-hint>
+    </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Price</mat-label>
         <mat-select name="price" placeholder="Price" [(ngModel)]="model.price.value">

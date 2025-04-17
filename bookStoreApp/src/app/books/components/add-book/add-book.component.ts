@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { BookModel } from '../../Models/book.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
@@ -14,13 +15,16 @@ import { BookModel } from '../../Models/book.model';
   styleUrls: ['./add-book.component.scss'],
 })
 export class AddBookComponent implements OnInit {
+
+  @ViewChild('myForm') myForm: NgForm;
+
   prices: any[] = [
     { value: 100, viewValue: '$ 100' },
     { value: 200, viewValue: '$ 200' },
     { value: 300, viewValue: '$ 300' },
   ];
   public model: BookModel;
-  constructor(private _bookService: BookService) {}
+  constructor(private _bookService: BookService) { }
 
   ngOnInit(): void {
     this.model = new BookModel();
@@ -35,6 +39,10 @@ export class AddBookComponent implements OnInit {
 
   saveBook(): void {
     console.log(this.model);
-    this._bookService.addBook(this.model);
+    if (this.myForm.valid) {
+      this._bookService.addBook(this.model);
+    } else {
+      alert('Validation error');
+    }
   }
 }
