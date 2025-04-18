@@ -25,57 +25,7 @@ export class BookService {
         currency: 'USD',
         value: 25.99,
       },
-    },
-    {
-      id: 3,
-      title: 'Vue.js for Beginners',
-      totalPages: 512,
-      author: 'Rahul Mehta',
-      price: {
-        currency: 'GBP',
-        value: 18.5,
-      },
-    },
-    {
-      id: 4,
-      title: 'Advanced TypeScript',
-      totalPages: 290,
-      author: 'Sophia Wilson',
-      price: {
-        currency: 'AUD',
-        value: 32.99,
-      },
-    },
-    {
-      id: 5,
-      title: 'JavaScript Essentials',
-      totalPages: 610,
-      author: 'Liam Jones',
-      price: {
-        currency: 'CAD',
-        value: 29.99,
-      },
-    },
-    {
-      id: 6,
-      title: 'JavaScript Essentials',
-      totalPages: 610,
-      author: 'Liam Jones',
-      price: {
-        currency: 'CAD',
-        value: 29.99,
-      },
-    },
-    {
-      id: 7,
-      title: 'JavaScript Essentials',
-      totalPages: 610,
-      author: 'Liam Jones',
-      price: {
-        currency: 'CAD',
-        value: 29.99,
-      },
-    },
+    }
   ];
 
   constructor() {}

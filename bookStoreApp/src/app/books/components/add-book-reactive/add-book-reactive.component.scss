@@ -9,3 +9,8 @@
 mat-hint{
     color: red;
 }
+.price-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
