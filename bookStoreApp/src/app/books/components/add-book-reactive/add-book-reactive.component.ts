@@ -16,24 +16,33 @@ export class AddBookReactiveComponent implements OnInit {
 
   currencies: any[] = [
     { value: 'USD', viewValue: 'US Dollar' },
-    { value: 'INR', viewValue: 'Indian Rupees' }
+    { value: 'INR', viewValue: 'Indian Rupees' },
   ];
   public addBookForm: FormGroup;
 
-  constructor(private _bookService: BookService) { }
+  constructor(private _bookService: BookService) {}
 
   ngOnInit(): void {
     this.intiForm();
   }
+  updateFormValues(): void {
+    this.addBookForm.patchValue({
+      title: 'Krunal Parmar',
+      author: 'default Krunal',
+    });
+  }
 
   private intiForm(): void {
     this.addBookForm = new FormGroup({
-      title: new FormControl('Krunal', [Validators.required, Validators.minLength(10)]),
+      title: new FormControl('Krunal', [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
       author: new FormControl(null, Validators.required),
       totalPages: new FormControl(),
       price: new FormGroup({
         currency: new FormControl(),
-        value: new FormControl()
+        value: new FormControl(),
       }),
       publishedOn: new FormControl(),
       isPublished: new FormControl(),
