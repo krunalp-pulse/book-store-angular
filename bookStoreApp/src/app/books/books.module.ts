@@ -8,7 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RecentBooksComponent } from './components/recent-books/recent-books.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddBookReactiveComponent } from './components/add-book-reactive/add-book-reactive.component';
 // import { BookService } from './services/book.service';
 
 @NgModule({
@@ -18,13 +19,15 @@ import { FormsModule } from '@angular/forms';
     BooksComponent,
     RecentBooksComponent,
     BookCardComponent,
-    AddBookComponent
+    AddBookComponent,
+    AddBookReactiveComponent
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   // providers: [BookService]
 })
