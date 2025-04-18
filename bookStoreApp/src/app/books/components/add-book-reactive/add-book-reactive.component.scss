@@ -14,3 +14,7 @@ mat-hint{
     flex-direction: row;
     justify-content: space-between;
 }
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
+  

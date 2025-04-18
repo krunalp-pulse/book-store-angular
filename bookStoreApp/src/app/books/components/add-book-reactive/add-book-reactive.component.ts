@@ -36,7 +36,13 @@ export class AddBookReactiveComponent implements OnInit {
     titleControl?.valueChanges.subscribe((x) => {
       this.validateTitleControl(titleControl as FormControl);
     });
+
+    const formatTypeControl = this.addBookForm.get('formatType');
+    formatTypeControl?.valueChanges.subscribe((x) => {
+      this.formatTypeChanegd(x);
+    });
   }
+
   updateFormValues(): void {
     this.addBookForm.patchValue({
       title: 'Krunal Parmar',
@@ -58,6 +64,9 @@ export class AddBookReactiveComponent implements OnInit {
       }),
       publishedOn: new FormControl(),
       isPublished: new FormControl(),
+      docFormat: new FormControl(),
+      pdfFormat: new FormControl(),
+      formatType: new FormControl(),
     });
   }
 
@@ -69,16 +78,36 @@ export class AddBookReactiveComponent implements OnInit {
       alert('Validation error');
     }
   }
+
   private validateTitleControl(titleControl: FormControl): void {
     this.titleErrorMessage = '';
     if (titleControl.errors && (titleControl.touched || titleControl.dirty)) {
-      debugger;
       if (titleControl.errors?.required) {
         this.titleErrorMessage = 'This is an required field.';
-      }
-       else if (titleControl.errors?.minlength) {
-        this.titleErrorMessage = 'Minimum length is ' + titleControl.errors?.minlength?.requiredLength;
+      } else if (titleControl.errors?.minlength) {
+        this.titleErrorMessage =
+          'Minimum length is ' + titleControl.errors?.minlength?.requiredLength;
       }
     }
+  }
+
+  private formatTypeChanegd(formatType: string): void {
+    const docControl = this.addBookForm.get('docFormat');
+    const pdfControl = this.addBookForm.get('pdfFormat');
+
+    if (formatType === 'pdf') {
+      pdfControl?.addValidators(Validators.required)
+      docControl?.clearValidators();
+    } 
+    else if (formatType === 'doc') {
+      docControl?.addValidators(Validators.required);
+      pdfControl?.clearValidators();
+    }
+    else{
+      
+    }
+
+    pdfControl?.updateValueAndValidity();
+    docControl?.updateValueAndValidity();
   }
 }
