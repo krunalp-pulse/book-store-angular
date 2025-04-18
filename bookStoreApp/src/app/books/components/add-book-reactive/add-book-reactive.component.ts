@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormControlName,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { BookService } from '../../services/book.service';
 
 @Component({
@@ -8,6 +13,8 @@ import { BookService } from '../../services/book.service';
   styleUrls: ['./add-book-reactive.component.scss'],
 })
 export class AddBookReactiveComponent implements OnInit {
+  public titleErrorMessage: string;
+
   prices: any[] = [
     { value: 200, viewValue: '200' },
     { value: 100, viewValue: '100' },
@@ -27,7 +34,7 @@ export class AddBookReactiveComponent implements OnInit {
 
     const titleControl = this.addBookForm.get('title');
     titleControl?.valueChanges.subscribe((x) => {
-      console.log(x);
+      this.validateTitleControl(titleControl as FormControl);
     });
   }
   updateFormValues(): void {
@@ -41,7 +48,7 @@ export class AddBookReactiveComponent implements OnInit {
     this.addBookForm = new FormGroup({
       title: new FormControl('Krunal', [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(7),
       ]),
       author: new FormControl(null, Validators.required),
       totalPages: new FormControl(),
@@ -60,6 +67,18 @@ export class AddBookReactiveComponent implements OnInit {
       this._bookService.addBook(this.addBookForm.value);
     } else {
       alert('Validation error');
+    }
+  }
+  private validateTitleControl(titleControl: FormControl): void {
+    this.titleErrorMessage = '';
+    if (titleControl.errors && (titleControl.touched || titleControl.dirty)) {
+      debugger;
+      if (titleControl.errors?.required) {
+        this.titleErrorMessage = 'This is an required field.';
+      }
+       else if (titleControl.errors?.minlength) {
+        this.titleErrorMessage = 'Minimum length is ' + titleControl.errors?.minlength?.requiredLength;
+      }
     }
   }
 }

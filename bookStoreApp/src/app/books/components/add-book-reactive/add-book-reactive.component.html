@@ -5,21 +5,17 @@
         <mat-label>Title</mat-label>
         <input matInput name="title" placeholder="Title" formControlName="title" />
         <mat-icon matSuffix>title</mat-icon>
-        <mat-hint *ngIf="addBookForm.get('title')?.invalid && addBookForm.get('title')?.touched">
-            <span *ngIf="addBookForm.get('title')?.errors?.required">Please enter the book title</span>
-            <span *ngIf="addBookForm.get('title')?.errors?.minlength">Min length is 10</span>
-        </mat-hint>
-    </mat-form-field><br />
+        <mat-hint>
+            {{ titleErrorMessage }}
+        </mat-hint> </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>Author</mat-label>
         <input matInput name="author" placeholder="Author" formControlName="author" />
-        <mat-icon matSuffix>person</mat-icon>
-    </mat-form-field><br />
+        <mat-icon matSuffix>person</mat-icon> </mat-form-field><br />
     <mat-form-field appearance="fill">
         <mat-label>No of Pages</mat-label>
         <input matInput name="pages" type="number" placeholder="Pages" formControlName="totalPages" />
-        <mat-icon matSuffix>123</mat-icon>
-    </mat-form-field><br />
+        <mat-icon matSuffix>123</mat-icon> </mat-form-field><br />
     <div class="price-container" formGroupName="price">
         <mat-form-field appearance="fill">
             <mat-label>Currency</mat-label>
@@ -39,19 +35,21 @@
             </mat-select>
             <mat-icon matSuffix>attach_money</mat-icon>
         </mat-form-field>
-    </div><br />
+    </div>
+    <br />
     <mat-form-field appearance="fill">
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" name="publishedOn" formControlName="publishedOn" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field><br />
+        <mat-datepicker #picker></mat-datepicker> </mat-form-field><br />
     <p>
         <mat-slide-toggle color="primary" name="isPublished" formControlName="isPublished">
             Slide me!
         </mat-slide-toggle>
     </p>
     <br />
-    <button type="submit" mat-raised-button color="primary" [disabled]="addBookForm.invalid">Save</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="addBookForm.invalid">
+        Save
+    </button>
 </form>
-{{addBookForm.value | json}}
+{{ addBookForm.value | json }}
