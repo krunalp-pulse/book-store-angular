@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
-  FormControlName,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -27,7 +27,12 @@ export class AddBookReactiveComponent implements OnInit {
   ];
   public addBookForm: FormGroup;
 
-  constructor(private _bookService: BookService) {}
+  constructor(
+    private _bookService: BookService,
+    private _formBuilder: FormBuilder
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.intiForm();
@@ -51,22 +56,19 @@ export class AddBookReactiveComponent implements OnInit {
   }
 
   private intiForm(): void {
-    this.addBookForm = new FormGroup({
-      title: new FormControl('Krunal', [
-        Validators.required,
-        Validators.minLength(7),
-      ]),
-      author: new FormControl(null, Validators.required),
-      totalPages: new FormControl(),
-      price: new FormGroup({
-        currency: new FormControl(),
-        value: new FormControl(),
+    this.addBookForm = this._formBuilder.group({
+      title: ['This is default', [Validators.required, Validators.minLength(10)]],
+      author: '',
+      totalPages: '',
+      price: this._formBuilder.group({
+        currency: '',
+        value: '',
       }),
-      publishedOn: new FormControl(),
-      isPublished: new FormControl(),
-      docFormat: new FormControl(),
-      pdfFormat: new FormControl(),
-      formatType: new FormControl(),
+      publishedOn: '',
+      isPublished: '',
+      docFormat: '',
+      pdfFormat: '',
+      formatType: '',
     });
   }
 
@@ -96,15 +98,12 @@ export class AddBookReactiveComponent implements OnInit {
     const pdfControl = this.addBookForm.get('pdfFormat');
 
     if (formatType === 'pdf') {
-      pdfControl?.addValidators(Validators.required)
+      pdfControl?.addValidators(Validators.required);
       docControl?.clearValidators();
-    } 
-    else if (formatType === 'doc') {
+    } else if (formatType === 'doc') {
       docControl?.addValidators(Validators.required);
       pdfControl?.clearValidators();
-    }
-    else{
-      
+    } else {
     }
 
     pdfControl?.updateValueAndValidity();
