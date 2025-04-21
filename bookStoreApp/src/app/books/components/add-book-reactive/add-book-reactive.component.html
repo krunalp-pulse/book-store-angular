@@ -29,7 +29,9 @@
                 <input matInput name="author" placeholder="Author fullName" formControlName="fullName" />
                 <mat-icon matSuffix>person</mat-icon>
              </mat-form-field>
+        <button mat-raised-button (click)="removeAuthor(i)">Remove</button>
         </div>
+        <button mat-raised-button (click)="addMoreAuthor()">Add more</button>
     </div>
     <br />
     <mat-form-field appearance="fill">

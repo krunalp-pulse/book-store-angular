@@ -5,13 +5,15 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MeterialModule } from './meterial.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthorsComponent } from './components/authors/authors.component';
+import { BoolformatPipe } from './pipes/boolformat.pipe';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     ToolbarComponent,
     FooterComponent,
-    AuthorsComponent
+    AuthorsComponent,
+    BoolformatPipe
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { AuthorsComponent } from './components/authors/authors.component';
     ToolbarComponent,
     FooterComponent,
     MeterialModule,
-    AuthorsComponent
+    AuthorsComponent,
+    BoolformatPipe
   ]
 })
 export class SharedModule { }

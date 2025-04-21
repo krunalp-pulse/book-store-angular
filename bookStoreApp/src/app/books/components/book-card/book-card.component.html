@@ -3,14 +3,14 @@
     <mat-card class="book-card" *ngFor="let book of books">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{book.title}}</mat-card-title>
+        <mat-card-title>{{book.title  | titlecase}}</mat-card-title>
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
       <mat-card-content>
         <p>{{book.author}}</p>
         <p>Total pages: {{book.totalPages}}</p>
         <p>Price: {{book.price.value + " " + book.price.currency}}</p>
-        <p>Is book published: {{book.isPublished}}</p>
+        <p>Is book published: {{book.isPublished | boolformat}}</p>
         <p>published on: {{book.publishedOn}}</p>
 
       </mat-card-content>

@@ -125,4 +125,12 @@ export class AddBookReactiveComponent implements OnInit {
   public get authors(): FormArray {
     return <FormArray>this.addBookForm.get('authors');
   }
+
+  public addMoreAuthor(): void {
+    this.authors.push(this.getAuthorControl());
+  }
+  
+  public removeAuthor(i: number): void {
+    this.authors.removeAt(i);
+  }
 }
