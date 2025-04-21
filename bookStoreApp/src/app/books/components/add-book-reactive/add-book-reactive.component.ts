@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { BookService } from '../../services/book.service';
@@ -26,11 +26,11 @@ export class AddBookReactiveComponent implements OnInit {
     { value: 'USD', viewValue: 'US Dollar' },
     { value: 'INR', viewValue: 'Indian Rupees' },
   ];
-  public addBookForm: FormGroup;
+  public addBookForm: UntypedFormGroup;
 
   constructor(
     private _bookService: BookService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class AddBookReactiveComponent implements OnInit {
 
     const titleControl = this.addBookForm.get('title');
     titleControl?.valueChanges.subscribe((x) => {
-      this.validateTitleControl(titleControl as FormControl);
+      this.validateTitleControl(titleControl as UntypedFormControl);
     });
 
     const formatTypeControl = this.addBookForm.get('formatType');
@@ -87,13 +87,13 @@ export class AddBookReactiveComponent implements OnInit {
     }
   }
 
-  private getAuthorControl(): FormGroup {
+  private getAuthorControl(): UntypedFormGroup {
     return this._formBuilder.group({
       fullName: '',
     });
   }
 
-  private validateTitleControl(titleControl: FormControl): void {
+  private validateTitleControl(titleControl: UntypedFormControl): void {
     this.titleErrorMessage = '';
     if (titleControl.errors && (titleControl.touched || titleControl.dirty)) {
       if (titleControl.errors?.required) {
@@ -122,8 +122,8 @@ export class AddBookReactiveComponent implements OnInit {
     docControl?.updateValueAndValidity();
   }
 
-  public get authors(): FormArray {
-    return <FormArray>this.addBookForm.get('authors');
+  public get authors(): UntypedFormArray {
+    return <UntypedFormArray>this.addBookForm.get('authors');
   }
 
   public addMoreAuthor(): void {
