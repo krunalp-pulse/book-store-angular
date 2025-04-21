@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -30,9 +31,7 @@ export class AddBookReactiveComponent implements OnInit {
   constructor(
     private _bookService: BookService,
     private _formBuilder: FormBuilder
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.intiForm();
@@ -57,8 +56,11 @@ export class AddBookReactiveComponent implements OnInit {
 
   private intiForm(): void {
     this.addBookForm = this._formBuilder.group({
-      title: ['This is default', [Validators.required, Validators.minLength(10)]],
-      author: '',
+      title: [
+        'This is default',
+        [Validators.required, Validators.minLength(10)],
+      ],
+      // author: '',
       totalPages: '',
       price: this._formBuilder.group({
         currency: '',
@@ -69,6 +71,10 @@ export class AddBookReactiveComponent implements OnInit {
       docFormat: '',
       pdfFormat: '',
       formatType: '',
+      authors: this._formBuilder.array([
+        this.getAuthorControl(),
+        this.getAuthorControl(),
+      ]),
     });
   }
 
@@ -79,6 +85,12 @@ export class AddBookReactiveComponent implements OnInit {
     } else {
       alert('Validation error');
     }
+  }
+
+  private getAuthorControl(): FormGroup {
+    return this._formBuilder.group({
+      fullName: '',
+    });
   }
 
   private validateTitleControl(titleControl: FormControl): void {
@@ -108,5 +120,9 @@ export class AddBookReactiveComponent implements OnInit {
 
     pdfControl?.updateValueAndValidity();
     docControl?.updateValueAndValidity();
+  }
+
+  public get authors(): FormArray {
+    return <FormArray>this.addBookForm.get('authors');
   }
 }
